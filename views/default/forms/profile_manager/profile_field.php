@@ -146,6 +146,8 @@ $options = [
 	'admin_only',
 ];
 foreach ($options as $option) {
+	$class = 'custom_fields_form_field_option'. elgg_extract($option, $option_classes, '');
+
 	$checked = ($$option === 'yes');
 	if (in_array($option, ['user_editable', 'show_on_profile'])) {
 		$checked = ($$option !== 'no');
@@ -156,7 +158,8 @@ foreach ($options as $option) {
 		'#label' => elgg_echo("profile_manager:admin:{$option}"),
 		'#help' => elgg_echo("profile_manager:admin:{$option}:description"),
 		'name' => $option,
-		'class' => elgg_extract_class($option_classes, ['custom_fields_form_field_option'], $option),
+		// 'class' => elgg_extract_class($option_classes, ['custom_fields_form_field_option'], $option),
+		'class' => $class,
 		'checked' => $checked,
 		'switch' => true,
 		'default' => 'no',
@@ -172,6 +175,7 @@ $options_title .= elgg_view('output/pm_hint', [
 
 $formbody .= elgg_view_module('info', $options_title, $options_content);
 
+$formbody .= elgg_view('input/hidden', ['name' => 'type', 'value' => 'profile']);
 $formbody .= elgg_view('input/hidden', ['name' => 'guid', 'value' => $guid]);
 $formbody .= elgg_view('input/submit', ['value' => elgg_echo('save')]);
 
