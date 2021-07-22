@@ -85,7 +85,6 @@ if (!empty($cats)) {
 				'name' => 'custom_profile_type',
 				'id' => 'custom_profile_type',
 				'options_values' => $dropdown_options,
-				'onchange' => 'elgg.change_profile_type;',
 				'value' => $user->custom_profile_type,
 				'class' => 'mlm',
 			]);
@@ -128,7 +127,7 @@ if (!empty($cats)) {
 				// add extra class so it can be toggle in the display
 				$hidden_category = true;
 				foreach ($profile_types as $type) {
-					$category_class[] = 'custom_profile_type_' . $type->guid;
+					$category_class[] = "custom_profile_type_$type->guid";
 					if ($type->guid === (int) $profile_type) {
 						$hidden_category = false;
 					}
