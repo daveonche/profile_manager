@@ -85,7 +85,7 @@ if (!empty($cats)) {
 				'name' => 'custom_profile_type',
 				'id' => 'custom_profile_type',
 				'options_values' => $dropdown_options,
-				'onchange' => 'elgg.profile_manager.change_profile_type();',
+				'onchange' => 'elgg.change_profile_type;',
 				'value' => $user->custom_profile_type,
 				'class' => 'mlm',
 			]);
